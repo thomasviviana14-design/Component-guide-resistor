@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Guide: Resistors</title>
+    <style>
+        :root {
+            --primary-color: #0d9488; /* Teal theme for passive components */
+            --text-dark: #0f172a;
+            --text-light: #475569;
+            --bg-gray: #f8fafc;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        .badge {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            z-index: 1000;
+        }
+
+        .main-wrapper {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+
+        .section {
+            display: flex;
+            gap: 60px;
+            margin-bottom: 120px;
+            align-items: flex-start;
+        }
+
+        .visual-content {
+            flex: 1.2;
+            position: sticky;
+            top: 40px;
+        }
+
+        .text-content {
+            flex: 1;
+        }
+
+        h1 { 
+            font-size: 3rem; 
+            border-bottom: 3px solid var(--primary-color); 
+            display: inline-block; 
+            margin-bottom: 30px; 
+            font-weight: bold; 
+        }
+
+        h2 { 
+            font-size: 2rem; 
+            margin-bottom: 20px; 
+            font-weight: bold; 
+        }
+
+        p { 
+            font-size: 1.1rem; 
+            color: var(--text-light); 
+            margin-bottom: 20px;
+        }
+
+        .image-box {
+            background: var(--bg-gray);
+            padding: 15px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-box img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+        }
+
+        .caption {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .pin-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pin-list li {
+            margin-bottom: 12px;
+            padding: 12px;
+            background: var(--bg-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .pin-label {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+
+        @media (max-width: 1024px) {
+            .section { flex-direction: column; }
+            .visual-content { position: static; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="badge">Get ready to learn</div>
+
+    <div class="main-wrapper">
+        
+        <h1>The Resistor</h1>
+
+        <div class="section">
+            <div class="visual-content">
+                <div class="image-box">
+                    <img src="resistor.jpg" alt="Through-hole Resistors with Color Bands">
+                    <div class="caption">The Resistor: Controlling current flow in electronic circuits</div>
+                </div>
+            </div>
+            
+            <div class="text-content">
+                <h2>Introduction</h2>
+                <p>
+                    A resistor is a passive component designed to limit or regulate the flow of electrical current. Think of electricity like water flowing through a pipeline; a resistor behaves like a narrow squeeze in that pipe, slowing down the flow. It is measured in Ohms (&Omega;) and ensures that components like your ESP32 don't receive dangerous amounts of current.
+                </p>
+
+                <h2>How it Works</h2>
+                <p>
+                    Resistors operate entirely on Ohm's Law ($V = I \times R$), meaning voltage equals current multiplied by resistance. By using restrictive internal materials like carbon film, a resistor converts excess electrical energy into micro-amounts of heat. Since resistors do not have positive or negative sides, they function perfectly no matter which way you orient them in a circuit.
+                </p>
+
+                <h2>How it is Used</h2>
+                <p>
+                    Resistors are incredibly versatile and act as the primary safety guardians of your hardware:
+                </p>
+                <ul class="pin-list">
+                    <li><strong>Current Limiting:</strong> Placed in series with an LED to keep it from burning itself out instantly.</li>
+                    <li><strong>Pull-up / Pull-down:</strong> Connected to input pins on microcontrollers to prevent random electrical noise from triggering false button presses.</li>
+                    <li><strong>Voltage Dividers:</strong> Combining two resistors to drop a high voltage signal down into a safe, measurable logic level.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="visual-content">
+                <div class="image-box">
+                    <img src="resistorcolorcode.png" alt="Resistor Color Code Decoding Chart">
+                    <div class="caption">Color Coding: Decoding values across different band types</div>
+                </div>
+            </div>
+
+            <div class="text-content">
+                <h2>Understanding the Color Code</h2>
+                <p>Because resistors are tiny, they use color bands instead of printed text to show their value. Using our diagram, we can read these codes by understanding each step:</p>
+                
+                <ul class="pin-list">
+                    <li><span class="pin-label">Reading Direction:</span> Look for the wider gap before the final bands. You always read from left to right, starting away from that gap.</li>
+                    <li><span class="pin-label">Significant Figures:</span> The first 2 bands (on 3 and 4-band types) or the first 3 bands (on 5 and 6-band types) provide the base numbers.</li>
+                    <li><span class="pin-label">Multiplier:</span> The next band tells you how many zeros to multiply the base numbers by (e.g., Red means multiply by 100).</li>
+                    <li><span class="pin-label">Tolerance:</span> The gold, silver, or colored band on the edge shows the accuracy margin (e.g., Gold means the actual value is within 5%).</li>
+                    <li><span class="pin-label">Temperature Coefficient:</span> Found exclusively on 6-band resistors. It tells you how much the resistance shifts when the component heats up.</li>
+                </ul>
+
+                <h2>Pro-Tip for Beginners</h2>
+                <p>
+                    Memorizing the values takes time, but you can use the classic mnemonic trick shown on the left side of the chart: 
+                    <strong>"Big Brown Rabbits Often Yield Great Blue Vocalists, Generally Writing Good Songs Now!"</strong> 
+                    The first letter of each word maps directly to the colors in order: Black, Brown, Red, Orange, Yellow, Green, Blue, Violet, Gray, White, Gold, Silver, and None. Always keep this chart handy or verify your values with a digital multimeter before powering your project!
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

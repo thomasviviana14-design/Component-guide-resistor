@@ -1,0 +1,1 @@
+# Component-guide-resistor
